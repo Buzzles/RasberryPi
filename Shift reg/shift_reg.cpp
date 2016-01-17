@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <sys/mman.h>
 
-#include "RpiCore.h"
+#include "Core/RpiCore.h"
 
 int main(void)
 {
@@ -26,8 +26,9 @@ int main(void)
 	4) Clock to low, ds to low.
 
 	**/
-	RpiCore RCore();
+	RpiCore RCore;   
 
+    
 
 	//True = output / false = input
 	bool bInputSet = false;
