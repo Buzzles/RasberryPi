@@ -3,32 +3,12 @@
 // Ian Buswell
 
 // For GPIO17 - Pin 11 on header / GPIO 23
-
-//#include <stdlib>
-//#include <stdio>
-#include <string>
-#include <iostream>
-#include <stdint.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/mman.h>
-#include <sys/time.h>
-#include <unistd.h>
-
 #include "RpiCore.h"
 
 using namespace std;
 
-#define BASEMEM 0x20000000
-#define BASEGPIO (BASEMEM + 0x200000)
-#define PAGE_SIZE (4*1024)
-#define BLOCK_SIZE (4*1024)
-
 class RpiCore
 {
-	bool setAsOutput = false;
-
 	char* RpiCore::binary(unsigned int v) {
 		static char binstr[33];
 		int i;
@@ -48,14 +28,12 @@ class RpiCore
 		return tv;
 	}
 
-	volatile uintptr_t *pointerToGPIO;
+    volatile uintptr_t *pointerToGPIO;
 
 	RpiCore::RpiCore()
 	{
 		// Ctor!
 		cout << "RPI Ctor - Initialised";
-
-		volatile uintptr_t *pointerToGPIO;
 
 		if ((pointerToGPIO = setupPins()) == NULL) cout << "Failure to setup pins\n";
 		cout << "Raspberry Pi - Ultrasonic sensor test, GPIO 17 as trigger. 23 as Echo \n";
@@ -74,10 +52,15 @@ class RpiCore
 
 	RpiCore::~RpiCore() {
 
-		pointerToGPIO = null;
+		pointerToGPIO = NULL;
 
 	}
 
+    volatile uintptr_t* RpiCore::GetRpiCore()
+    {
+        if (pointerToGPIO == NULL) cout << "Pins not setup. pointerToGPIO is null!\n";
+        return pointerToGPIO;
+    }
 
 	volatile uintptr_t* setupPins()
 	{

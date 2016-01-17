@@ -2,6 +2,9 @@
 // Jan 2016
 // Ian Buswell
 
+#ifndef _RpiCore_
+#define _RpiCore_
+
 #include <string>
 #include <iostream>
 #include <stdint.h>
@@ -25,11 +28,14 @@ private:
 	struct timeval GetTimeStamp();
 	volatile uintptr_t *pointerToGPIO;
 	volatile uintptr_t* setupPins();
+    bool setAsOuput;
 
 public:
 
 	RpiCore();
 	~RpiCore();
+
+    volatile uintptr_t* RpiCore::GetRpiCore();
 
 	void set_Output(unsigned int pin, volatile uintptr_t* pGPIO);
 	void set_Input(unsigned int pin, volatile uintptr_t* pGPIO);
@@ -38,3 +44,5 @@ public:
 	void reset_PinState(unsigned int pin, volatile uintptr_t* pGPIO);
 	int get_PinState(unsigned int pin, volatile uintptr_t* pGPIO);
 };
+
+#endif

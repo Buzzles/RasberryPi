@@ -26,19 +26,15 @@ int main(void)
 	4) Clock to low, ds to low.
 
 	**/
-	RpiCore RCore;   
-
-    
+	RpiCore RCore;     
 
 	//True = output / false = input
 	bool bInputSet = false;
-
-
 	//GPIO 17 == pin 11 on the RPi header
 	string consoleInput = "";
 	volatile uintptr_t *pointerToGPIO;
 
-	if ((pointerToGPIO = setupPins()) == NULL) cout << "Failure to setup pins\n";
+	if ((pointerToGPIO = RCore.setupPins()) == NULL) cout << "Failure to setup pins\n";
 
 	cout << "Raspberry Pi basic GPIO test program \n This program will test GPIO_17 (Pin 11 on header) \n";
 
