@@ -1,9 +1,7 @@
-//RASPBERRY PI GPIO Shift Register trst.
-//For GPIO17 - Pin 11 on header / GPIO 23
-//Oct 2014
+// RASPBERRY PI GPIO Control - Core Module - RpiCore
+// Jan 2016
+// Ian Buswell
 
-//#include <stdlib>
-//#include <stdio>
 #include <string>
 #include <iostream>
 #include <stdint.h>
@@ -19,11 +17,6 @@ using namespace std;
 #define BASEGPIO (BASEMEM + 0x200000)
 #define PAGE_SIZE (4*1024)
 #define BLOCK_SIZE (4*1024)
-
-volatile uintptr_t* setupPins();
-
-bool setAsOutput = false;
-//static uint32_t *pGPIO;
 
 class RpiCore
 {
@@ -44,5 +37,4 @@ public:
 	void set_PinState(unsigned int pin, volatile uintptr_t* pGPIO, unsigned int value);
 	void reset_PinState(unsigned int pin, volatile uintptr_t* pGPIO);
 	int get_PinState(unsigned int pin, volatile uintptr_t* pGPIO);
-
 };

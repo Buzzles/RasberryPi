@@ -1,5 +1,5 @@
-//RASPBERRY PI GPIO Control - Core Module - RpiCore
-//Feb 2016
+// RASPBERRY PI GPIO Control - Core Module - RpiCore
+// Jan 2016
 // Ian Buswell
 
 // For GPIO17 - Pin 11 on header / GPIO 23
